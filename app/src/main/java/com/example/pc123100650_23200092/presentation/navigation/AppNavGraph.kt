@@ -8,7 +8,7 @@ import com.example.pc123100650_23200092.presentation.auth.CatalogoDestinos
 import com.example.pc123100650_23200092.presentation.auth.PlanificadorPresupuestos
 import com.example.pc123100650_23200092.presentation.auth.PermisoUbicacionScreen
 import com.example.pc123100650_23200092.presentation.home.HomeScreen
-
+import com.example.pc123100650_23200092.presentation.auth.CalculadoraEquipaje
 @Composable
 fun AppNavGraph(navController: NavHostController) {
 
@@ -22,7 +22,7 @@ fun AppNavGraph(navController: NavHostController) {
         }
 
         composable("luggage") {
-            PermisoUbicacionScreen(navController)
+            CalculadoraEquipaje(navController)
         }
 
         composable("budget") {
