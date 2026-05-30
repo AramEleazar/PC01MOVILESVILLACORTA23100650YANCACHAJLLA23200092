@@ -30,8 +30,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-                CatalogoDestinos()
-            }
-        }
-    }
-}
