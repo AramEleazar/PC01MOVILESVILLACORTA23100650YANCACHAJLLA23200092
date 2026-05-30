@@ -3,16 +3,18 @@ package com.example.pc123100650_23200092.presentation.auth
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.pc123100650_23200092.data.model.Destination
 
 @Composable
-fun CatalogoDestinos() {
+fun CatalogoDestinos(navController: NavHostController) {
 
     val destinos = listOf(
 
@@ -54,55 +56,70 @@ fun CatalogoDestinos() {
 
     val sumaCostos = destinos.sumOf { it.costo }
 
-    LazyColumn(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
 
-        items(destinos) { destino ->
+        Button(
+            onClick = {
+                navController.navigate("home")
+            }
+        ) {
+            Text("Volver al menú principal")
+        }
 
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 10.dp)
-            ) {
+        Spacer(modifier = Modifier.height(10.dp))
 
-                Row(
-                    modifier = Modifier.padding(10.dp)
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            items(destinos) { destino ->
+
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 10.dp)
                 ) {
 
-                    AsyncImage(
-                        model = destino.imagen,
-                        contentDescription = destino.ciudad,
-                        modifier = Modifier.size(100.dp)
-                    )
+                    Row(
+                        modifier = Modifier.padding(10.dp)
+                    ) {
 
-                    Spacer(modifier = Modifier.width(10.dp))
+                        AsyncImage(
+                            model = destino.imagen,
+                            contentDescription = destino.ciudad,
+                            modifier = Modifier.size(100.dp)
+                        )
 
-                    Column {
+                        Spacer(modifier = Modifier.width(10.dp))
 
-                        Text("País: ${destino.pais}")
+                        Column {
 
-                        Text("Ciudad: ${destino.ciudad}")
+                            Text("País: ${destino.pais}")
 
-                        Text("Costo promedio: S/. ${destino.costo}")
+                            Text("Ciudad: ${destino.ciudad}")
+
+                            Text("Costo promedio: S/. ${destino.costo}")
+                        }
                     }
                 }
             }
-        }
 
-        item {
+            item {
 
-            Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
-            Text(
-                text = "Cantidad total de destinos: ${destinos.size}"
-            )
+                Text(
+                    text = "Cantidad total de destinos: ${destinos.size}"
+                )
 
-            Text(
-                text = "Suma acumulada de costos: S/. $sumaCostos"
-            )
+                Text(
+                    text = "Suma acumulada de costos: S/. $sumaCostos"
+                )
+            }
         }
     }
 }
